@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<link rel="stylesheet" href="style.css">
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+	</head>
+	<body class="nice-blue-noise">
+
+		<nav class="navbar navbar-expand bg-dark navbar-dark col-12">
+			<ul class="navbar-nav justify-content-start col-5">
+			</ul>
+
+			<ul class="navbar-nav col-2 justify-content-center">
+				<li class="nav-item justify-content-center align-items-center d-flex">
+					<a href="https://github.com/MinceRetor" target="_blank">
+						<img src="images/icons/github-mark-white.svg" width="32">
+					</a>
+				</li>
+			</ul>
+		</nav>
+		<div class="container-fluid text-white h-auto mt-3">
+			<div class="row">
+				<div class="col-10 float-left offset-1 rounded" id="content">
+				My biggest and longest project up to date. It began as a map and asset editor for one of my games in 2019, 
+				but I quickly found more interest in developing tools for the game than the game itself, 
+				so I abandoned the game and focused solely on the engine. 
+				<br/>
+				<br/>
+				The initial assumptions were simple: 
+				<ul>
+					<li>Only 2D</li>
+					<li>Full editor</li>
+					<li>Entity-Component-System</li>
+				</ul>
+				<br/>
+				Back then, I was using Dear ImGui for UI, Lua for scripting and SFML for pretty much everything else (rendering, input, window creation, etc.) in my game, so naturally I based my engine on them too. 
+				<br/>
+				<br/>
+				The video below shows the state of the engine in February 2021.
+				
+				<br/>
+				<br/>
+				<div class="d-flex justify-content-center">
+					<iframe width="600" height="338" src="https://www.youtube.com/embed/qISe07-7Bag" title="Game Engine" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				</div>
+				<br/>
+				<br/>
+				
+				Unfortunately, after a while, I started realizing the severe limitations imposed by both, the way I implemented systems and the libraries I chose to use.
+				<br/>
+				Examples:
+				<ul>
+					<li>Every script needed its own native code that exposed its members to the editor.</li>
+					<li>Lua is a dynamically typed language, and a lot of functionality I wanted, either required or would be much easier to implement with static typing.</li>
+					<li>At one point, the rendering capabilities of SFML became insufficient, and I had a few performance issues with it.</li>
+				</ul>
+				<br/>
+				The first issue I addressed was the scripting language. After some research, I decided to choose AngelScript which is statically typed, 
+				easy to integrate with C/C++ (much easier than Lua, and there is no need for any binding library), 
+				and the language itself has almost everything I would want from a scripting language. 
+				<br/>
+				<br/>
+				Next, I focused on rendering, this took a lot of time as I experimented with different solutions, such as: mixing legacy OpenGL with SFML, modern OpenGL or using the BGFX library. 
+				Each of them has its own advantages and disadvantages. In the end, I decided to make my own abstraction for rendering that is capable of targeting different backends.
+				<br/>
+				<br/>
+				The next decision was to switch from SFML to SDL2, as it supports much more platforms and is more actively maintained. 
+				I also decided to divide my codebase into multiple dynamic libraries and expose their functionalities through a C API. 
+				<br/>
+				<br/>
+				After many more ideas and decisions related to what I want from this project, I set up current goals, some of which are: 
+				
+				<ul>
+					<li>Primary 2D, but having some simple 3D support, like the ability to render 3D objects on a 2D layer.</li>
+					<li>Very cross-platform, including retro consoles like PSP and 3DS (and pretty much everything that is more powerful and capable and has open source SDK and toolchain), 
+					this will prove challenging in some aspects, but challenges are what make achievements satisfying after all.</li>
+					<li>End user must be able to build a game for the target platform without having to install an SDK or toolchain for the target platform.</li>
+					<li>A full editor that can be expanded in functionality either by scripts or dynamic libraries.</li>
+					<li>Configurable build pipeline, for example, choosing the compression method for image assets used by the final game build.</li>
+				</ul>
+				
+				<br/>
+				
+				It will take quite a while before any game could be made with this engine (if ever), but I have great fun making it.
+				
+				
+				<br/>
+				<br/>
+				
+				</div>
+			</div>
+			
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			
+		</div>
+					
+
+	
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+		<script text="javascript" src="js/jquery-3.5.0.min.js"></script>
+	</body>
+</html>

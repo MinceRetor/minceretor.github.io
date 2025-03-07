@@ -37,7 +37,7 @@
 	margin-bottom: 40px;
 }
 
-.peojectTitle
+.projectTitle
 {
   text-shadow: 2px 2px #000;
 }
@@ -54,7 +54,9 @@
 	linear-gradient(to bottom, rgba(56, 129, 255, 1), rgba(0, 49, 133, 1));
 }
 
-
+.badge.badge-dotnet {
+   background-color: #512bd4;
+} 
 
 html
 {
